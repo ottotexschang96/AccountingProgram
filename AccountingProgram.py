@@ -1,21 +1,29 @@
-# Read a file
+
+import os # operating system
+
 product = []
-with open('AccountingProgram.csv', 'r', encoding = 'utf-8') as f:
-	for line in f: 
-		if 'Name名子, Price價格' in line: # make sure if a word is in specific line, use 'in'
-			continue # skip the current line and move to second loop. continue usually comes with loop like break
-		# s = line.strip().split(',') 
-		name, price = line.strip().split(',') 
-		#remove str \n or space by strip; cut the line by split, which will make it become a list
-		# name = s[0]
-		# price = s[1]
-		product.append([name, price])
-		# print(s)
-print(product)
+# Read a file
+# obsolute address, given specific directory
+# it's relative address if it is only given file name, and it will only check under the same file with AccountingProgram.csv
+if os.path.isfile('AccountingProgram.csv'): #os.path.isfile can check if the file "AccountingProgram.csv" still in the document
+	print('Yes, there is the file')
+	with open('AccountingProgram.csv', 'r', encoding = 'utf-8') as f:
+		for line in f: 
+			if 'Name名子, Price價格' in line: # make sure if a word is in specific line, use 'in'
+				continue # skip the current line and move to second loop. continue usually comes with loop like break
+			# s = line.strip().split(',') 
+			name, price = line.strip().split(',') 
+			#remove str \n or space by strip; cut the line by split, which will make it become a list
+			# name = s[0]
+			# price = s[1]
+			product.append([name, price])
+			# print(s)
+	print(product)
+else:
+	print('No such file')
 
 # User input
 ## we can tell there is a list by seeing []
-product = []
 while True:
 	name = input('Please input product name:')
 	if name == 'q':
